@@ -24,7 +24,6 @@ enum Gender {
   men
   women
   kid
-  unisex
 }
 
 enum Role {

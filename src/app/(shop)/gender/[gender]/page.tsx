@@ -20,7 +20,6 @@ const labels: Record<string, string> = {
   men: "Men",
   women: "Women",
   kid: "Kid",
-  unisex: "Unisex",
 };
 
 export async function generateMetadata(

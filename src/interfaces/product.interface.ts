@@ -29,6 +29,6 @@ export interface ProductImage {
     productId: string;
 }
 
-export type Gender = 'men'|'women'|'kid'|'unisex'
+export type Gender = 'men'|'women'|'kid';
 export type Size = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL';
-type League = 'Premier League'|'Serie A'|'La Liga'|'Bundesliga'|'Ligue One'|'Rest of the World'
+type League = 'Premier League'|'Serie A'|'La Liga'|'Bundesliga'|'Ligue One'|'Rest of the World'|'National Teams';

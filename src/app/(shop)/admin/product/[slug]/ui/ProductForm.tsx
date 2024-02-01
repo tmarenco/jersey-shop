@@ -26,7 +26,7 @@ interface FormInputs {
   inStock: number;
   sizes: string[];
   tags: string;
-  gender: "men" | "women" | "kid" | "unisex";
+  gender: "men" | "women" | "kid";
   leagueId: string;
   images?: FileList;
 
@@ -155,7 +155,6 @@ export const ProductForm = ({ product, leagues }: Props) => {
             <option value="men">Men</option>
             <option value="women">Women</option>
             <option value="kid">Kid</option>
-            <option value="unisex">Unisex</option>
           </select>
         </div>
 
