@@ -39,13 +39,14 @@ export const ProductSlideshow = ({ images, title, className }: Props) => {
         className="mySwiper2"
       >
         {images.map((image) => (
-          <SwiperSlide key={image}>
+          <SwiperSlide key={image} className="flex place-content-center">
             <ProductImage
               width={1024}
               height={800}
               src={image}
               alt={title}
-              className="rounded-lg object-fill"
+              className="rounded-lg self-center"
+              style={{ width: "100%", height: "70%" }}
             />
           </SwiperSlide>
         ))}

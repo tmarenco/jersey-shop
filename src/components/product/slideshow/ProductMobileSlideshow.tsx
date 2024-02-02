@@ -30,13 +30,14 @@ export const ProductMobileSlideshow = ({ images, title, className }: Props) => {
         className="mySwiper2"
       >
         {images.map((image) => (
-          <SwiperSlide key={image}>
+          <SwiperSlide key={image} className="flex place-content-center">
             <ProductImage
               width={600}
               height={500}
               src={image}
               alt={title}
-              className="object-fill"
+              className="rounded-lg object-fill self-center"
+              style={{ height: "90%" }}
             />
           </SwiperSlide>
         ))}
