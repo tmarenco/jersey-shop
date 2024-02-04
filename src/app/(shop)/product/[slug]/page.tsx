@@ -1,4 +1,4 @@
-export const revaldiate = 604800;
+export const revalidate = 604800;
 
 import { notFound } from "next/navigation";
 import { titleFont } from "@/config/fonts";
