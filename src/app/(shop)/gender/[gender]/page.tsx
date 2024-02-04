@@ -1,9 +1,8 @@
 export const revalidate = 60;
 
-import { getPaginatedProductsWithImages } from "@/actions";
-import { Pagination, ProductGrid, Title } from "@/components";
+import { getProductsWithImages } from "@/actions";
+import { ProductGrid, Title } from "@/components";
 import { capitalizeFirstLetter } from "@/utils";
-import { Gender } from "@prisma/client";
 import { Metadata, ResolvingMetadata } from "next";
 import { redirect } from "next/navigation";
 
@@ -40,12 +39,21 @@ export async function generateMetadata(
 export default async function GenderPage({ params, searchParams }: Props) {
   const { gender } = params;
 
+  if (!labels[gender]) {
+    redirect("/");
+  }
+
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
 
-  const { products, currentPage, totalPages } =
-    await getPaginatedProductsWithImages({ page, gender: gender as Gender });
+  const { products } = await getProductsWithImages();
 
-  if (products.length === 0) {
+  const productsFiltered = products.filter(
+    (product) => product.gender === gender
+  );
+
+  const totalPagesFiltered = Math.ceil(productsFiltered.length / 12);
+
+  if (page > totalPagesFiltered) {
     redirect(`/gender/${gender}`);
   }
 
@@ -57,9 +65,7 @@ export default async function GenderPage({ params, searchParams }: Props) {
         className="mb-2"
       />
 
-      <ProductGrid products={products} />
-
-      <Pagination totalPages={totalPages} />
+      <ProductGrid products={productsFiltered} page={page} />
     </>
   );
 }

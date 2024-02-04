@@ -17,7 +17,6 @@ export const OrderStatus = ({ isPaid }: Props) => {
       )}
     >
       <IoCardOutline size={30} />
-      {/* <span className="mx-2">Pending payment</span> */}
       <span className="mx-2">{isPaid ? "Paid" : "Unpaid"}</span>
     </div>
   );
