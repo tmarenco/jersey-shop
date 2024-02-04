@@ -9,7 +9,7 @@ import {
 
 export default function AdminPage() {
   return (
-    <div className="flex justify-around grid">
+    <div className="grid justify-around">
       <Link
         href="/admin/users"
         className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded tansition-all"

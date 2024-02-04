@@ -1,4 +1,4 @@
-import NextAuth, { type NextAuthConfig } from 'next-auth';
+import NextAuth, { Session, type NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import prisma from './lib/prisma';
 import { z } from 'zod';
@@ -20,7 +20,7 @@ export const authConfig: NextAuthConfig = {
             return token;
         },
 
-        session( {session, token, user} ){
+        session( {session, token}: {session: Session; token?: any} ){
             //Now that we have the user data in the token, we asign to the session.user the token data. we type it as any initially but that will
             //cause some errors when we build, so we have to create the file 'nextauth.d.ts' in the root to asign a type
             session.user = token.data as any;
