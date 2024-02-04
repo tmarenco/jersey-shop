@@ -1,14 +1,12 @@
 export const revalidate = 0;
 
 // https://tailwindcomponents.com/component/hoverable-table
-import { getPaginatedOrders, getPaginatedProductsWithImages } from "@/actions";
+import { getProductsWithImages } from "@/actions";
 import { Pagination, ProductImage, Title } from "@/components";
 import { currencyFormat } from "@/utils";
-import Image from "next/image";
 
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { IoCardOutline } from "react-icons/io5";
 
 interface Props {
   searchParams: {
@@ -18,8 +16,17 @@ interface Props {
 
 export default async function ProductsMaintenancePage({ searchParams }: Props) {
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
-  const { products, currentPage, totalPages } =
-    await getPaginatedProductsWithImages({ page });
+  const startIndex = (page - 1) * 12;
+  const endIndex = startIndex + 12;
+
+  const { products, totalPages } = await getProductsWithImages();
+
+  const paginatedProducts =
+    products.length > 12 ? products.slice(startIndex, endIndex) : products;
+
+  if (page > totalPages) {
+    redirect("/admin/products");
+  }
 
   return (
     <>
@@ -74,7 +81,7 @@ export default async function ProductsMaintenancePage({ searchParams }: Props) {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {paginatedProducts.map((product) => (
               <tr
                 key={product.id}
                 className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
