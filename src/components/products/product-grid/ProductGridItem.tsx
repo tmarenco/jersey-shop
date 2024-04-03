@@ -19,13 +19,18 @@ export const ProductGridItem = ({ product }: Props): any => {
   const [displayImage, setDisplayImage] = useState(getImageUrl(0));
 
   return (
-    <div className="flex justify-center">
-      <div className="rounded-md overflow-hidden fade-in">
+    <div
+      className="flex justify-center"
+      style={{
+        height: "75vh",
+      }}
+    >
+      <div className="rounded-md overflow-hidden fade-in w-full">
         <Link href={`/product/${product.slug}`}>
           <Image
             src={`${displayImage}`}
             alt={product.title}
-            style={{ height: "80%", width: "calc(100vw - 30vw)" }}
+            style={{ height: "80%", width: "100%" }}
             className="w-full rounded"
             width={500}
             height={500}
